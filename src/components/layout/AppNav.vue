@@ -1,8 +1,8 @@
 <template>
     <div class="navbar-wrapper">
- <div class="container">
+    <div class="container">
         <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-          
+
             <div class="navbar-header">
               <button type="button" id="btnClose" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -13,7 +13,7 @@
               <!--<a class="navbar-brand" href="#"><img src="../../assets/image/logo.png"></a>-->
               <div class="logo"><img src="../../assets/image/logo.png"></div>
             </div>
-           
+
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><router-link :to="{name: 'index'}" v-current="$route.name" name="index">{{ language.nav.home }}</router-link></li>
@@ -38,18 +38,18 @@
                     <span class="language">中文</span>
                   </template>
                 </li>
-                
+
               </ul>
             </div>
-          </div>
         </nav>
 
+    </div>
     </div>
 </template>
 
 <script>
   import { ch, en } from '../../language/'
-  
+
 	export default {
 	  data () {
 	    return {
@@ -70,7 +70,7 @@
 	    changeLanguage () {
         if (!window.matchMedia("(min-width: 768px)").matches) {
           this.btn.click()
-        } 
+        }
 	      if (this.$route.query['language'] === 'en') {
 	        this.$router.push({query: { language: 'ch' }})
 	      } else {
@@ -84,7 +84,7 @@
           el.addEventListener('click', function () {
             if (!window.matchMedia("(min-width: 768px)").matches) {
               vnode.context.btn.click()
-            } 
+            }
           })
         },
         update (el, binding, vnode) {
@@ -133,7 +133,7 @@
         margin: 0;
     }
     .navbar-wrapper .navbar {
-      border-radius: 0; 
+      border-radius: 0;
     }
     .navbar-wrapper {
       margin-top: 0;
@@ -153,7 +153,7 @@
 }
 .navbar-wrapper{
   background-color: rgba(0, 0, 0, 0.7);
-} 
+}
 .logo {
   height: 30px;
   width: 100px;
