@@ -10,7 +10,7 @@ Vue.use(Router)
 // get menuItems[0].name || menuItems[0].children[0].name
 //let _indexName = _menuitems[0].children ? _menuitems[0].children[0].name : _menuitems[0].name
 
-// common.js => init.index 如果为空（字符串类型） 则不指定初始菜单默认打开项，系统将选择导入的menuItems[0] 为默认项	
+// common.js => init.index 如果为空（字符串类型） 则不指定初始菜单默认打开项，系统将选择导入的menuItems[0] 为默认项
 //Store.dispatch('setDefaultItem', init.indexRoute === '' ? _indexName : init.indexRoute)
 
 // parent obj
@@ -57,7 +57,7 @@ const router = new Router({
     },
     {
       name: 'detail',
-      path: '/detail',
+      path: '/detail/:id',
       component: lazyLoading('Detail')
     },
     {

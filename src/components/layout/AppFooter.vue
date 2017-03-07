@@ -45,7 +45,7 @@
                       </template>
                     </div>
                 </div>
-                
+
                 <div class="col-sm-2">
                     <div class="widget">
                       <template v-if="$route.query['language'] === 'en'">
@@ -66,61 +66,77 @@
                       </template>
                     </div>
                 </div>
-                
-                <div class="col-sm-3">
-                    <div class="widget">
-                      <template v-if="$route.query['language'] === 'en'">
-                        <h4 class="title">Contact Us</h4>
-                        <div class="content tag-cloud">
-                          <p>Address: Room 1202-A, 12 / F, NO.570 Shengxia RD  ZHANGJIANG-INNOPARK Shanghai</p>
-                          <p>Tel: +86 21 8888-8888</p>
-                          <p>E-mail: business@est.com</p>
+
+                <div class="col-sm-3" v-if="companyinfo.hasOwnProperty('intro')">
+                  <div class="widget">
+                        <h4 class="title" v-if="$route.query['language']==='ch'">联系我们</h4>
+                        <h4 class="title" v-else>Contact Us</h4>
+                        <div class="content tag-cloud" v-if="$route.query['language']==='ch'">
+                          <p>地址: {{ companyinfo.address[$route.query['language']] }}</p>
+                          <p>电话: {{ companyinfo.tel }}</p>
+                          <p>邮箱: {{ companyinfo.email }}</p>
                         </div>
-                      </template>
-                      <template v-else>
-                        <h4 class="title">联系我们</h4>
-                        <div class="content tag-cloud">
-                          <p>地址: 张江高科技园区盛夏路570号12楼1202-A室</p>
-                          <p>电话: +86 21 6111-5253</p>
-                          <p>邮箱: est@espacetime.com</p>
+                        <div class="content tag-cloud" v-else>
+                          <p>Address: {{ companyinfo.address[$route.query['language']] }}</p>
+                          <p>Tel: {{ companyinfo.tel }}</p>
+                          <p>E-mail: {{ companyinfo.email }}</p>
                         </div>
-                      </template>
-                    </div>
+                  </div>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-3" v-if="companyinfo.hasOwnProperty('intro')">
                     <div class="widget">
-                      <template v-if="$route.query['language'] === 'en'">
-                        <h4 class="title">Subscribe the Wechat public number</h4>
-                      </template>
-                      <template v-else>
-                        <h4 class="title">关注微信公众号</h4>
-                      </template>
+                        <h4 class="title" v-if="$route.query['language']==='en'">Subscribe the Wechat public number</h4>
+                        <h4 class="title" v-else>关注微信公众号</h4>
                         <div class="content tag-cloud friend-links">
-                           <img src="../../assets/image/public-07.png">
+                           <img :src="companyinfo.qrcode">
                         </div>
-                </div></div>
+                </div>
+                </div>
             </div>
         </div>
     </footer>
-      
+
       <!--copyright-->
       <div class="copyright">
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
               <span>Copyright © E Speace Time</span> |
-              <span><a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备88888888号</a></span>
+              <span><a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备17000115号</a></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  	
+
   <!-- </div>-->
 </template>
 
-<style> 
+<script type="text/javascript">
+  export default {
+    data () {
+        return {
+          companyinfo: {}
+        }
+    },
+    created () {
+      // get companyinfo
+      this.$http.get('/static/data/companyinfo.json')
+        .then(
+          (res) => {
+            this.companyinfo = res.body
+            console.log(this.companyinfo)
+          },
+          () => {
+            this.companyinfo = {}
+          }
+        )
+    }
+  }
+</script>
+
+<style>
 .copyright {
     background: #111;
     font-size: 13px;
