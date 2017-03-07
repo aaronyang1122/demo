@@ -115,10 +115,18 @@
     },
     created () {
       // get news list
-      this.$http.get('/api/news/list')
+      this.$http.get(
+          '/api/news/detail',
+          {
+            params: {
+                id: this.$route.params.id
+            }
+          }
+        )
         .then(
           (res) => {
-            this.news = res.body.content
+              console.log(res.body)
+            // this.news = res.body.content
           },
           () => {
             this.news = []
