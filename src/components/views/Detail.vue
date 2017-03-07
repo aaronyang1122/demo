@@ -14,7 +14,9 @@
               <p class='newspic'><img :src="detail.img" alt="" /></p>
               <div class="detail" v-html="detail.content[$route.query['language']]"></div>
             </section>
-
+            <router-link :to="{name: 'news'}" class="more">
+              {{ $route.query['language']==='ch' ? '< 返回' : '< back' }}
+            </router-link>
           </div>
         </div>
       </div>
@@ -42,7 +44,6 @@
         )
         .then(
           (res) => {
-              console.log(res.body)
               this.detail = res.body
           },
           () => {

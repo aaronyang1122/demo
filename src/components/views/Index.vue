@@ -139,22 +139,16 @@
           }
         )
 
-      // get companyinfo
+      // get companyinfo1111
       this.$http.get('/static/data/companyinfo.json')
         .then(
           (res) => {
             this.companyinfo = res.body
-            console.log(this.companyinfo)
           },
           () => {
             this.companyinfo = {}
           }
         )
-    },
-    watch: {
-        'sliders' (val) {
-            // console.log(val)
-        }
     }
   }
 </script>
