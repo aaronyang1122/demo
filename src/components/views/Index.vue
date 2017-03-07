@@ -50,11 +50,20 @@
     <div class="homrow4">
       <div class="container index-items">
         <ul class="index-items-box">
-          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat', backgroundSize: '90px'}">
+          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index<3">
             <router-link :to="{name: item.more === '' ? 'building' : item.more}">
             <h5>{{ item.title[$route.query['language']] }}</h5>
             <p>{{ item.description[$route.query['language']] }}</p>
             <a href="javascript:void(0)">more</a>
+            </router-link>
+          </li>
+        </ul>
+        <ul class="index-items-box">
+          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index>2&&index<6">
+            <router-link :to="{name: item.more === '' ? 'building' : item.more}">
+              <h5>{{ item.title[$route.query['language']] }}</h5>
+              <p>{{ item.description[$route.query['language']] }}</p>
+              <a href="javascript:void(0)">more</a>
             </router-link>
           </li>
         </ul>

@@ -10,7 +10,7 @@
               <i v-else>新闻  |  大麦网  |  {{ item.createtime }} </i>
               <p class='newspic'><img :src="item.img" alt="" /></p>
               <p>
-                <router-link :to="{name: 'detail', params: { id: item._id }}">
+                <router-link :to="{name: 'detail', params: { id: item._id }}" class="more">
                   {{ $route.query['language']==='ch' ? '更多...' : 'more...' }}
                 </router-link>
               </p>
