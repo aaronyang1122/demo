@@ -15,7 +15,7 @@
                 <p class="logo-1"><img :src="item.logo" alt="First slide" /></p>
                 <h1>{{ item.title[$route.query['language']] }}</h1>
               </div>
-              <div class="col-sm-6 pic-1">
+              <div class="col-sm-6" :class="{'pic-1': item.textposition==='left'||item.textposition==='right'||item.textposition==='bottom', 'pic-2': item.textposition==='top'}">
                 <img :src="item.prdpic" alt="First slide" />
               </div>
             </div>
@@ -33,7 +33,7 @@
     </div>
     <!-- /.carousel -->
 
-      <div class="full-width-container banner-1" v-for="(item, index) in sections" :style="{background: 'url(' + item.bg + ')', backgroundPosition: 'center 0', backgroundSize: 'cover'}">
+      <div class="full-width-container banner-1" v-for="(item, index) in sections" :style="{background: 'url(' + item.bg + ') no-repeat', backgroundPosition: 'center 0', backgroundSize: 'cover'}">
         <div class="inner">
           <div class="container">
             <img :src="item.logo"/>
@@ -50,7 +50,7 @@
     <div class="homrow4">
       <div class="container index-items">
         <ul class="index-items-box">
-          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index<3">
+          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat 20px 10px', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index<3">
             <router-link :to="{name: item.more === '' ? 'building' : item.more}">
             <h5>{{ item.title[$route.query['language']] }}</h5>
             <p>{{ item.description[$route.query['language']] }}</p>
@@ -59,7 +59,7 @@
           </li>
         </ul>
         <ul class="index-items-box">
-          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index>2&&index<6">
+          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat 20px 10px', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index>2&&index<6">
             <router-link :to="{name: item.more === '' ? 'building' : item.more}">
               <h5>{{ item.title[$route.query['language']] }}</h5>
               <p>{{ item.description[$route.query['language']] }}</p>

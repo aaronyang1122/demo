@@ -96,6 +96,8 @@
 	  .more {
 	    color: #eead4d;
 	    cursor: pointer;
+      padding: 10px 0;
+      font-size: 14px;
 	  }
 	  .detail {
 	    /*display: none;*/
