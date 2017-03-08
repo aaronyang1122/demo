@@ -42,7 +42,7 @@ const router = new Router({
     },
     {
       name: 'product',
-      path: '/product',
+      path: '/product/:id',
       component: lazyLoading('Product')
     },
     {

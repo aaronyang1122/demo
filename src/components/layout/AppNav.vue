@@ -17,14 +17,23 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><router-link :to="{name: 'index'}" v-current="$route.name" name="index">{{ language.nav.home }}</router-link></li>
-                <li><router-link :to="{name: 'product'}" v-current="$route.name" name="product">{{ language.nav.product }}</router-link></li>
-                <li><router-link :to="{name: 'news'}" v-current="$route.name" name="news">{{ language.nav.news }}</router-link></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" v-current="$route.name" name="product">{{ language.nav.product }}<span class="caret"></span></a>
+                  <!--<router-link :to="{name: 'product'}" v-current="$route.name" name="product">{{ language.nav.product }}</router-link>-->
+                  <ul class="dropdown-menu" role="menu">
+                    <template v-for="(item, index) in productList">
+                      <li v-uncolsp="$route.name"><router-link :to="{name: 'product', params: { id: item._id }}">{{ item.name[$route.query['language']] }}</router-link></li>
+                      <li class="divider"></li>
+                    </template>
+                  </ul>
+                </li>
+                <li><router-link :to="{name: 'news'}" v-current="$route.name" name="news&detail">{{ language.nav.news }}</router-link></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" v-current="$route.name" name="blog">{{ language.nav.blog }}<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><router-link :to="{name: 'building'}">{{ language.nav.community }}</router-link></li>
+                    <li v-uncolsp="$route.name"><router-link :to="{name: 'building'}">{{ language.nav.community }}</router-link></li>
                     <li class="divider"></li>
-                    <li><router-link :to="{name: 'building'}">{{ language.nav.forum }}</router-link></li>
+                    <li v-uncolsp="$route.name"><router-link :to="{name: 'building'}">{{ language.nav.forum }}</router-link></li>
                   </ul>
                 </li>
                 <li><router-link :to="{name: 'building'}" v-current="$route.name" name="yun">{{ language.nav.cloud }}</router-link></li>
@@ -47,12 +56,13 @@
     </div>
 </template>
 
-<script>
+<script type="text/javascript">
   import { ch, en } from '../../language/'
 
 	export default {
 	  data () {
 	    return {
+        productList: []
 	    }
 	  },
 	  computed: {
@@ -79,10 +89,19 @@
 	    }
 	  },
     directives: {
+      uncolsp: {
+        bind (el, binding, vnode) {
+          el.addEventListener('click', function () {
+            if (!window.matchMedia("(min-width: 768px)").matches && el.getAttribute('class')!=='dropdown-toggle') {
+              vnode.context.btn.click()
+            }
+          })
+        }
+      },
       current: {
         bind (el, binding, vnode) {
           el.addEventListener('click', function () {
-            if (!window.matchMedia("(min-width: 768px)").matches) {
+            if (!window.matchMedia("(min-width: 768px)").matches && el.getAttribute('class')!=='dropdown-toggle') {
               vnode.context.btn.click()
             }
           })
@@ -114,6 +133,16 @@
     },
     created () {
       this.$router.push({query: { language: 'ch' }})
+
+      this.$http.get('/api/product/list')
+        .then(
+          (res) => {
+            this.productList = res.body.content
+          },
+          () => {
+            this.productList = []
+          }
+        )
     }
 	}
 </script>
