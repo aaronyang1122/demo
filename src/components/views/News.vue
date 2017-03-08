@@ -4,17 +4,40 @@
       <div class="container newscontainer">
         <div class="row">
           <div class="col-sm-9 left">
-            <section class="item" v-for="(item, index) in news">
+            <section class="item" v-for="(item, index) in news" v-if="index<10">
               <h1>{{ item.title[$route.query['language']] }}</h1>
               <i v-if="$route.query['language']==='en'">news  |  Damaiv  |  {{ item.createtime }} </i>
               <i v-else>新闻  |  大麦网  |  {{ item.createtime }} </i>
-              <p class='newspic'><img :src="item.img" alt="" /></p>
+              <p class='newspic'>
+                <router-link :to="{name: 'detail', params: { id: item._id }}">
+                  <img :src="item.img" alt="" />
+                </router-link>
+              </p>
               <p>
                 <router-link :to="{name: 'detail', params: { id: item._id }}" class="more">
                   {{ $route.query['language']==='ch' ? '更多...' : 'more...' }}
                 </router-link>
               </p>
             </section>
+
+            <section class="item" v-for="(item, index) in news" v-if="index>9&&showMore">
+              <h1>{{ item.title[$route.query['language']] }}</h1>
+              <i v-if="$route.query['language']==='en'">news  |  Damaiv  |  {{ item.createtime }} </i>
+              <i v-else>新闻  |  大麦网  |  {{ item.createtime }} </i>
+              <p class='newspic'>
+                <router-link :to="{name: 'detail', params: { id: item._id }}">
+                  <img :src="item.img" alt="" />
+                </router-link>
+              </p>
+              <p>
+                <router-link :to="{name: 'detail', params: { id: item._id }}" class="more">
+                  {{ $route.query['language']==='ch' ? '更多...' : 'more...' }}
+                </router-link>
+              </p>
+            </section>
+
+            <a href="#" @click.prevent="moreNews" v-if="news.length>10 && !showMore">{{ $route.query['language']==='ch' ? '加载更多新闻' : 'Show all news' }}</a>
+
           </div>
           <div class="col-sm-3 left">
             <div class="aside">
@@ -41,7 +64,13 @@
   export default {
     data () {
       return {
-        news: []
+        news: [],
+        showMore: false
+      }
+    },
+    methods: {
+      moreNews () {
+          this.showMore = true
       }
     },
     created () {
