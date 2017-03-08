@@ -126,7 +126,6 @@
         .then(
           (res) => {
             this.companyinfo = res.body
-            console.log(this.companyinfo)
           },
           () => {
             this.companyinfo = {}
