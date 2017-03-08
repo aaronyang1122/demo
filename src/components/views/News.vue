@@ -4,7 +4,7 @@
       <div class="container newscontainer">
         <div class="row">
           <div class="col-sm-9 left">
-            <section class="item" v-for="(item, index) in news" v-if="index<1">
+            <section class="item" v-for="(item, index) in news" v-if="index<10">
               <h1>{{ item.title[$route.query['language']] }}</h1>
               <i v-if="$route.query['language']==='en'">news  |  Damaiv  |  {{ item.createtime }} </i>
               <i v-else>新闻  |  大麦网  |  {{ item.createtime }} </i>
@@ -20,7 +20,7 @@
               </p>
             </section>
 
-            <section class="item" v-for="(item, index) in news" v-if="index>0&&showMore">
+            <section class="item" v-for="(item, index) in news" v-if="index>9&&showMore">
               <h1>{{ item.title[$route.query['language']] }}</h1>
               <i v-if="$route.query['language']==='en'">news  |  Damaiv  |  {{ item.createtime }} </i>
               <i v-else>新闻  |  大麦网  |  {{ item.createtime }} </i>
@@ -36,7 +36,7 @@
               </p>
             </section>
 
-            <a href="#" @click.prevent="moreNews" v-if="news.length>1 && !showMore" class="load-more">{{ $route.query['language']==='ch' ? '加载更多新闻' : 'Show all news' }}</a>
+            <a href="#" @click.prevent="moreNews" v-if="news.length>10 && !showMore" class="load-more">{{ $route.query['language']==='ch' ? '加载更多新闻' : 'Show all news' }}</a>
 
           </div>
           <div class="col-sm-3 left">
