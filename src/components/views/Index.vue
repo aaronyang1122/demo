@@ -10,12 +10,12 @@
       <div class="carousel-inner" role="listbox">
         <div class="item" v-for="(item, index) in sliders" :class="{ 'active': index===0 }">
           <div class="container">
-            <div class="carousel-caption">
+            <div class="carousel-caption" :class="{'pic-2': item.textposition==='top'}">
               <div class="col-sm-6">
                 <p class="logo-1"><img :src="item.logo" alt="First slide" /></p>
                 <h1>{{ item.title[$route.query['language']] }}</h1>
               </div>
-              <div class="col-sm-6" :class="{'pic-1': item.textposition==='left'||item.textposition==='right'||item.textposition==='bottom', 'pic-2': item.textposition==='top'}">
+              <div class="col-sm-6" :class="{'pic-1': item.textposition==='left'||item.textposition==='right'||item.textposition==='bottom'>
                 <img :src="item.prdpic" alt="First slide" />
               </div>
             </div>
