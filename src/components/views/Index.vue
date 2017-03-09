@@ -8,9 +8,36 @@
         <li data-target="#myCarousel" v-for="(item, index) in sliders" data-slide-to="index" :class="{ 'active': index===0 }" ></li>
       </ol>
       <div class="carousel-inner" role="listbox">
+
+        <!--<div class="item">
+          <div class="container">
+            <div class="carousel-caption pic-2">
+              <p class="logo-2">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAAcCAMAAAD/XGWDAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+IEmuOgAAAARnQU1BAACxjwv8YQUAAAABc1JHQgCuzhzpAAABj1BMVEUAAABYVVRYVVQjGBVYVVTokhNYVVQjGBVYVVQjGBUjGBVYVVRYVVRYVVRYVVRYVVRYVVQjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBVYVVQjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBVYVVTokhPokhPokhPokhMjGBUjGBVYVVQjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBVYVVQjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBUjGBVYVVQjGBVkZGSrZHgqAAAAgnRSTlMA8KBgQMAQcIDAIDAgwOBg0P2ACl2dVhrIsE208WkI0++IOf73UL6pSwYRxXAMC+1MA/OBBDv04DcsHDqScuPSqr8XduzcqHffkLfC+TKMdJB80JwdEFMf4bC4zzQJj7GUkW5ORfDJUkgV6SgBInpazufRlby2LQYWHkCsk+uicd516Lcq7AAAAsZJREFUWMPNmGV72zAUhWVPs9XaTpwlZUhx0HaFQQftunXcMTMzM/Ok/fDJEINsxUqjejtfkih6bl6dXN0rGYD/TVDRUka1UYRQ0YyNlSsHD5cIq+GtkSlfvn4n6dL9GXPDhK8pUWgLoySyij1ZMBjbsms/OdB2SGfVtzGYMvOWLHz7qafpzkV/zmSfztcFUaMxTlhtKDhQ0R/r6CQ9QxmxbpPBj7lkh+PpRJJZWYIQLikB9c5tm9qzQh0nt/LJaNNxsxDPjQLGXZ75Whf91kns/t292zNjzR87D3IzOswBVxMY20HC2Bir9GWQdGfHOjqen9EWYzU1Otx+Bs0UAPaO7BEIduZyPtCIAms4Sgm0+BroEgDYR3YIBLva0/Dvj7U3zqwpTmrQFLFi5USNVUQKvVgViXal2jDAKnJuWUZ7ORJabSIEWacH2kSivRD6Pxjo1uUZ7e5GlTOF5rQNANksEu5xb2d55aGLfmMx/MKWIlrzaMMka4TiPSy9Glpx6AL2W7jFs9pfVg16w7rVjNauj05/9JpcamF188a9Z/Kgi0EHhxyrDb+Gi0KD65WzR1jo8QHy4Lk06MBo12qUwqz4/4BgenA083LqSWuj0H8YhbUNq8iTlXJscvep1xvFNiJfT++3SHLawnGxVmt20M/FSl4d6eSaFGjIMDPHJpdZMbz3i9UmoTvISSnQ1GgLhVKYY1OUmbbxD01SkxMyoJ02aCSaYzqz4IGpLvQpGdDxA4e360bDjzFmwaNpHU2S0xKg4+cN32oruqQos9gloI7ukmkJ0KzRntUwcjUwYt+KXLf4Kr9Z6G8emkkGZh0qe5kRvNjy9OldaVpCnUaJCudljFljtiOFBQo+QphLfy7w+8fsSEVCG9eUpJXBCVXFnK6T9bDmffoTmNKv+c88kO7ZsaaMrlmNMM5olf9IBoRm+rAGYELmX7wYCngDTNKEAAAAAElFTkSuQmCC" alt="First slide"></p>
+              <h1>开启AR异时空</h1>
+              <div><img src="/static/img/lun-2.85f1984.png" alt="First slide"></div>
+            </div>
+          </div>
+        </div>-->
+
+        <!--<div class="item">
+          <div class="container">
+            <div class="carousel-caption">
+              <div class="col-sm-6">
+                <p class="logo-1">
+                  <img src="data:image/png;base64,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" alt="First slide"></p>
+                <h1>解放双手大开眼界</h1>
+              </div>
+              <div class="col-sm-6 pic-1">
+                <img src="/static/img/lun-1.8fafc2b.png" alt="First slide">
+              </div>
+            </div>
+          </div>
+        </div>-->
+
         <div class="item" v-for="(item, index) in sliders" :class="{ 'active': index===0 }">
           <div class="container">
-            <div class="carousel-caption" class="pic-2" v-if="item.textposition==='top'">
+            <div class="carousel-caption pic-2" v-if="item.textposition==='top'">
               <p class="logo-2"><img :src="item.logo" alt="First slide" /></p>
               <h1>{{ item.title[$route.query['language']] }}</h1>
               <div>
@@ -22,7 +49,7 @@
                 <p class="logo-1"><img :src="item.logo" alt="First slide" /></p>
                 <h1>{{ item.title[$route.query['language']] }}</h1>
               </div>
-              <div class="col-sm-6" class="pic-1">
+              <div class="col-sm-6 pic-1">
                 <img :src="item.prdpic" alt="First slide" />
               </div>
             </div>
