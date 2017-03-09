@@ -37,14 +37,16 @@
 
         <div class="item" v-for="(item, index) in sliders" :class="{ 'active': index===0 }">
           <div class="container">
-            <div class="carousel-caption pic-2" v-if="item.textposition==='top'">
+
+            <div class="carousel-caption pic-2" v-if="item.textposition==='top' || item.textposition==='bottom'">
               <p class="logo-2"><img :src="item.logo" alt="First slide" /></p>
               <h1>{{ item.title[$route.query['language']] }}</h1>
               <div>
                 <img :src="item.prdpic" alt="First slide" />
               </div>
             </div>
-            <div class="carousel-caption" v-else>
+
+            <div class="carousel-caption" v-if="item.textposition==='left' || item.textposition==='right'">
               <div class="col-sm-6">
                 <p class="logo-1"><img :src="item.logo" alt="First slide" /></p>
                 <h1>{{ item.title[$route.query['language']] }}</h1>
@@ -53,6 +55,7 @@
                 <img :src="item.prdpic" alt="First slide" />
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -688,19 +691,26 @@
 
   @media (min-width: 768px) {
     .carousel-caption h1 {
-    color: #f8b62c;
-    font-size: 36px;
-    text-shadow: none;
-  }
+      color: #f8b62c;
+      font-size: 36px;
+      text-shadow: none;
+    }
 
-  .carousel-caption {
-    bottom: 60px;
-    text-align: left;
-  }
+    .carousel-caption {
+      bottom: 60px;
+      text-align: left;
+    }
 
-   .carousel-caption img {
-    margin: 0;
-  }
+    .carousel-caption img {
+      margin: 0;
+    }
+    .text-right {
+      .logo-1, h1 {
+        padding-left: 100px;
+        text-align: left;
+      }
+    }
+
 
   }
 
