@@ -143,7 +143,6 @@
         .then(
           (res) => {
               this.detail = res.body
-              console.log(this.detail)
           },
           () => {
             this.detail = {}
