@@ -9,7 +9,9 @@
               {{ p }}
             </p>
             <img :src="$route.query['language'] === 'ch' ? item.img : item.imgExtended" v-if="item.img !== '/' && item.imgExtended" style="margin-top:20px;"/>
-            <img :src="item.img" v-else style="margin-top:20px;"/>
+            <template v-else>
+              <img :src="item.img"  style="margin-top:20px;" v-if="item.img !== '/'"/>
+            </template>
           </div>
 
           <div class="container" v-if="item.textposition === 'right'">
