@@ -88,20 +88,36 @@
       <div class="container index-items">
         <ul class="index-items-box">
           <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat 20px 10px', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index<3">
-            <router-link :to="{name: item.more === '' ? 'building' : item.more}">
-            <h5>{{ item.title[$route.query['language']] }}</h5>
-            <p>{{ item.description[$route.query['language']] }}</p>
-            <a href="javascript:void(0)">more</a>
-            </router-link>
-          </li>
-        </ul>
-        <ul class="index-items-box">
-          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat 20px 10px', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index>2&&index<6">
-            <router-link :to="{name: item.more === '' ? 'building' : item.more}">
+
+            <a :href="item.more" v-if="/http:/g.test(item.more)">
+              <h5>{{ item.title[$route.query['language']] }}</h5>
+              <p>{{ item.description[$route.query['language']] }}</p>
+              <a href="javascript:void(0)">more</a>
+            </a>
+
+            <router-link :to="{name: item.more === '' ? 'building' : item.more}" v-else>
               <h5>{{ item.title[$route.query['language']] }}</h5>
               <p>{{ item.description[$route.query['language']] }}</p>
               <a href="javascript:void(0)">more</a>
             </router-link>
+
+          </li>
+        </ul>
+        <ul class="index-items-box">
+          <li class='item-news' v-for="(item, index) in expressway" :style="{background: 'url(' + item.icon + ') no-repeat 20px 10px', backgroundSize: '90px', backgroundColor: 'white'}" v-if="index>2&&index<6">
+
+            <a :href="item.more" v-if="/http:/g.test(item.more)">
+              <h5>{{ item.title[$route.query['language']] }}</h5>
+              <p>{{ item.description[$route.query['language']] }}</p>
+              <a href="javascript:void(0)">more</a>
+            </a>
+
+            <router-link :to="{name: item.more === '' ? 'building' : item.more, params: products.length > 0 ? {id: products[0]._id} : null}" v-else>
+              <h5>{{ item.title[$route.query['language']] }}</h5>
+              <p>{{ item.description[$route.query['language']] }}</p>
+              <a href="javascript:void(0)">more</a>
+            </router-link>
+
           </li>
         </ul>
       </div>
@@ -138,6 +154,7 @@
         sliders: [],
         sections: [],
         expressway: [],
+        products: [],
         companyinfo: {}
       }
     },
@@ -151,6 +168,17 @@
           },
           () => {
             this.sliders = []
+          }
+        )
+
+      // product
+      this.$http.get('/api/product/list')
+        .then(
+          (res) => {
+            this.products = res.body.content
+          },
+          () => {
+            this.products = []
           }
         )
 
@@ -176,7 +204,7 @@
           }
         )
 
-      // get companyinfo1111
+      // get companyinfo
       this.$http.get('/static/data/companyinfo.json')
         .then(
           (res) => {

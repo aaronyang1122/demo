@@ -8,7 +8,8 @@
             <p v-for="p in item.content[$route.query['language']].split(/\\s+|[;；]/g)">
               {{ p }}
             </p>
-            <img :src="item.img" v-if="item.img !== '/'"/>
+            <img :src="$route.query['language'] === 'ch' ? item.img : item.imgExtended" v-if="item.img !== '/' && item.imgExtended" style="margin-top:20px;"/>
+            <img :src="item.img" v-else style="margin-top:20px;"/>
           </div>
 
           <div class="container" v-if="item.textposition === 'right'">
