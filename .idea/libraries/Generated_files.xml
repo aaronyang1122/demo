@@ -1,16 +1,5 @@
 <component name="libraryTable">
   <library name="Generated files" type="javaScript">
-    <properties>
-      <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/dist/build/build.js" />
-        <item url="file://$PROJECT_DIR$/dist/dist/static/js/ie-emulation-modes-warning.js" />
-        <item url="file://$PROJECT_DIR$/dist/dist/static/js/app.6d6b72c58bdf5e1eb3dd.js" />
-        <item url="file://$PROJECT_DIR$/dist/dist/static/js/ie10-viewport-bug-workaround.js" />
-        <item url="file://$PROJECT_DIR$/dist/dist/static/js/bootstrap.min.js" />
-        <item url="file://$PROJECT_DIR$/dist/dist/static/js/manifest.4ccd6e982169f843f0ef.js" />
-        <item url="file://$PROJECT_DIR$/dist/dist/static/js/0.f5d0f49783ee8be9b759.js" />
-      </sourceFilesUrls>
-    </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/dist/build/build.js" />
       <root url="file://$PROJECT_DIR$/dist/dist/static/js/ie-emulation-modes-warning.js" />
