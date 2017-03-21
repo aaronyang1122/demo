@@ -31,7 +31,7 @@
     <!-- /.carousel -->
 
     <template v-if="$mq.above('768px')">
-      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgpc[$route.query['language']] + ')', backgroundSize: 'cover', backgroundPosition: 'center 0', height: '450px', backgroundRepeat: 'no-repeat'}">
+      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgpc[$route.query['language']] + ')', backgroundSize: 'cover', backgroundPosition: 'center 0', height: '500px', backgroundRepeat: 'no-repeat'}">
         <template v-if="item.link!==''">
           <a :href="item.link" v-if="/http:/g.test(item.link)" style="display:block;height:450px;"></a>
           <router-link :to="{name: item.link}"  class="slider-link" v-else></router-link>
@@ -40,7 +40,7 @@
     </template>
 
     <template v-else>
-      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgmobile[$route.query['language']] + ')', backgroundPosition: 'center 0', backgroundSize: 'cover', height: '450px', backgroundRepeat: 'no-repeat'}">
+      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgmobile[$route.query['language']] + ')', backgroundPosition: 'center 0', backgroundSize: 'cover', height: '500px', backgroundRepeat: 'no-repeat'}">
         <template v-if="item.link!==''">
           <a :href="item.link" v-if="/http:/g.test(item.link)" style="display:block;height:450px;"></a>
           <router-link :to="{name: item.link}"  class="slider-link" v-else></router-link>
