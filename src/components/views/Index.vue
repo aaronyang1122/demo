@@ -2,7 +2,7 @@
 	<section class="index">
 		<!-- Carousel -->
     <swiper :options="swiperOption" class="swiper-container" v-if="$mq.above('768px')">
-      <swiper-slide v-for="(item, index) in sliders" class="swiper-slide" :style="{backgroundImage:'url(' + item.imgpc[$route.query['language']] + ')', backgroundPosition: 'center 0', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}">
+      <swiper-slide v-for="(item, index) in sliders" class="swiper-slide" :style="{backgroundImage:'url(' + item.imgpc[$route.query['language']] + ')', backgroundPosition: 'center 0', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '681px'}">
 
         <template v-if="item.link!==''">
           <a :href="item.link" v-if="/http:/g.test(item.link)" class="slider-link"></a>
@@ -31,19 +31,19 @@
     <!-- /.carousel -->
 
     <template v-if="$mq.above('768px')">
-      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgpc[$route.query['language']] + ')', backgroundSize: 'cover', backgroundPosition: 'center 0', height: '500px', backgroundRepeat: 'no-repeat'}">
+      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgpc[$route.query['language']] + ')', backgroundSize: 'cover', backgroundPosition: 'center 0', height: item.imgpc.height + 'px', backgroundRepeat: 'no-repeat'}">
         <template v-if="item.link!==''">
-          <a :href="item.link" v-if="/http:/g.test(item.link)" style="display:block;height:450px;"></a>
-          <router-link :to="{name: item.link}"  class="slider-link" v-else></router-link>
+          <a :href="item.link" v-if="/http:/g.test(item.link)" :style="{display:'block',height:item.imgpc.height+'px'}"></a>
+          <router-link :to="{name: item.link}"  class="slider-link" :style="{display:'block',height:item.imgpc.height+'px'}" v-else></router-link>
         </template>
       </div>
     </template>
 
     <template v-else>
-      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgmobile[$route.query['language']] + ')', backgroundPosition: 'center 0', backgroundSize: 'cover', height: '500px', backgroundRepeat: 'no-repeat'}">
+      <div class="full-width-container" v-for="(item, index) in sections" :style="{backgroundImage: 'url(' + item.imgmobile[$route.query['language']] + ')', backgroundPosition: 'center 0', backgroundSize: 'cover', height: item.imgmobile.height + 'px', overflow: 'hidden', height: '0px', paddingTop: '125%',backgroundRepeat: 'no-repeat', position: 'relative'}">
         <template v-if="item.link!==''">
-          <a :href="item.link" v-if="/http:/g.test(item.link)" style="display:block;height:450px;"></a>
-          <router-link :to="{name: item.link}"  class="slider-link" v-else></router-link>
+          <a :href="item.link" v-if="/http:/g.test(item.link)" :style="{display: 'block', height: '100%', width: '100%', position: 'absolute', top: '0px', left: '0px'}"></a>
+          <router-link :to="{name: item.link}"  class="slider-link" :style="{display: 'block', height: '100%', width: '100%', position: 'absolute', top: '0px', left: '0px'}" v-else></router-link>
         </template>
       </div>
     </template>
